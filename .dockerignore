@@ -1,0 +1,15 @@
+target/
+.git/
+.gitignore
+*.md
+!README.md
+test.sh
+build.sh
+build.bat
+run.sh
+run.bat
+docker-compose.yml
+logs/
+*.log
+.env
+

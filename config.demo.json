@@ -1,0 +1,55 @@
+{
+  "server": {
+    "logging": "info",
+    "inflation": 0,
+    "sni-check": false,
+    "node-name": "flyio-demo-node",
+    "update-interval": 10,
+    "source-ips": [],
+    "retries": {
+      "max-retries": 3,
+      "timeout": 5
+    }
+  },
+  "api": [
+    {
+      "name": "demo-control-plane",
+      "base-url": "http://127.0.0.1:8000/api",
+      "api-key": "demo-api-key",
+      "default-package": "residential",
+      "legacy": false,
+      "ports": {
+        "userpass": "8080-8080",
+        "ipauth": ""
+      }
+    }
+  ],
+  "upstream": [
+    {
+      "name": "demo-upstream",
+      "ips": [
+        "http://your-upstream-provider.com:10000"
+      ],
+      "user": "upstream-username",
+      "password": "upstream-password",
+      "mapping": {
+        "country": "country",
+        "city": "city",
+        "state": "state",
+        "session": "session",
+        "time": "time"
+      },
+      "separator": "-",
+      "format-in": "username",
+      "weight": 100,
+      "package": "residential",
+      "allowed-countries": []
+    }
+  ],
+  "clickhouse": {
+    "host": "",
+    "username": "",
+    "password": ""
+  }
+}
+

@@ -1,0 +1,49 @@
+[package]
+name = "riptide-rust"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+tokio = { version = "1.35", features = ["full", "rt-multi-thread"] }
+tokio-uring = { version = "0.4", optional = true }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+anyhow = "1.0"
+thiserror = "1.0"
+tracing = "0.1"
+tracing-subscriber = { version = "0.3", features = ["env-filter", "json"] }
+bytes = "1.5"
+http = "1.0"
+httparse = "1.8"
+base64 = "0.21"
+async-trait = "0.1"
+parking_lot = "0.12"
+dashmap = "5.5"
+governor = "0.6"
+nonzero_ext = "0.3"
+rand = "0.8"
+futures = "0.3"
+once_cell = "1.19"
+arc-swap = "1.6"
+clap = { version = "4.4", features = ["derive"] }
+reqwest = { version = "0.11", features = ["json"] }
+nix = { version = "0.27", features = ["fs"], optional = true }
+
+[features]
+default = ["io-uring"]
+io-uring = ["tokio-uring", "nix"]
+
+[profile.release]
+opt-level = 3
+lto = "fat"
+codegen-units = 1
+strip = true
+
+[[bin]]
+name = "riptide"
+path = "src/main.rs"
+
+[[bin]]
+name = "test-client"
+path = "src/bin/test_client.rs"
+
