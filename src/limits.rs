@@ -1,10 +1,8 @@
 use dashmap::DashMap;
 use governor::{Quota, RateLimiter, clock::DefaultClock, state::{InMemoryState, NotKeyed}};
 use nonzero_ext::nonzero;
-use parking_lot::RwLock;
 use std::num::NonZeroU32;
 use std::sync::Arc;
-use std::time::Duration;
 
 #[derive(Clone)]
 pub struct LimitsManager {
@@ -152,14 +150,18 @@ impl LimitsManager {
         Ok(())
     }
     
+    // These methods are reserved for future features (control plane sync, debugging)
+    #[allow(dead_code)]
     pub fn get_bytes_used(&self, key: &str) -> i64 {
         self.inner.bytes_used.get(key).map(|v| *v).unwrap_or(0)
     }
     
+    #[allow(dead_code)]
     pub fn reset_bytes_used(&self, key: &str) {
         self.inner.bytes_used.insert(key.to_string(), 0);
     }
     
+    #[allow(dead_code)]
     pub fn get_all_keys(&self) -> Vec<String> {
         self.inner.active_threads.iter().map(|e| e.key().clone()).collect()
     }

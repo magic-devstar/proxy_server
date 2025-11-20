@@ -1,8 +1,7 @@
 use anyhow::Result;
 use tokio::net::{TcpListener, TcpStream};
 use tokio::io::{AsyncReadExt, AsyncWriteExt};
-use tracing::{info, warn, error, debug};
-use std::sync::Arc;
+use tracing::{info, error, debug};
 use base64::Engine;
 
 use crate::config::{Config, APIConfig};
@@ -54,7 +53,7 @@ pub async fn start_server(
 }
 
 async fn handle_connection(
-    mut stream: TcpStream,
+    stream: TcpStream,
     config: Config,
     api_config: APIConfig,
     stats: Statistics,
@@ -79,7 +78,7 @@ async fn handle_connection(
 
 async fn handle_http(
     mut stream: TcpStream,
-    config: Config,
+    _config: Config,
     _api_config: APIConfig,
     stats: Statistics,
     limits: LimitsManager,
@@ -188,7 +187,7 @@ async fn handle_http(
 
 async fn handle_socks5(
     mut stream: TcpStream,
-    config: Config,
+    _config: Config,
     _api_config: APIConfig,
     stats: Statistics,
     limits: LimitsManager,

@@ -167,8 +167,8 @@ pub async fn bidirectional_copy(
 }
 
 async fn bidirectional_copy_buffered(
-    mut client: TcpStream,
-    mut upstream: TcpStream,
+    client: TcpStream,
+    upstream: TcpStream,
     key: String,
     stats: Statistics,
     limits: LimitsManager,
@@ -180,8 +180,8 @@ async fn bidirectional_copy_buffered(
     let limits1 = limits.clone();
     let limits2 = limits.clone();
     
-    let (mut client_read, mut client_write) = client.split();
-    let (mut upstream_read, mut upstream_write) = upstream.split();
+    let (mut client_read, mut client_write) = client.into_split();
+    let (mut upstream_read, mut upstream_write) = upstream.into_split();
     
     // Client to upstream
     let h1 = tokio::spawn(async move {

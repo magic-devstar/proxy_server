@@ -1,0 +1,41 @@
+=====================================
+🚀 RIPTIDE PROXY MVP - QUICK START
+=====================================
+
+STEP 1: BUILD
+-------------
+Open PowerShell/Command Prompt here and run:
+
+    cargo build --release --no-default-features
+
+Wait 30 seconds for it to finish.
+
+
+STEP 2: START SERVICES (Need 2 terminals)
+-----------------------------------------
+Terminal 1:
+    python mock_api_server.py
+    
+Terminal 2:
+    target\release\riptide.exe --config config.json
+
+
+STEP 3: TEST IT
+---------------
+Option A (Easiest):
+    Double-click: MVP_DASHBOARD.html
+    Login: testuser / testpass
+    Click test buttons!
+
+Option B (Command Line):
+    curl.exe -x http://testuser:testpass@127.0.0.1:8080 http://httpbin.org/ip
+
+
+THAT'S IT! ✅
+-------------
+If you see an IP address, it's working!
+
+For more details, read: SIMPLE_START.md
+
+=====================================
+

@@ -231,14 +231,14 @@ async fn run_socks5_connection(
     
     // Skip remaining address info based on address type
     match resp[3] {
-        0x01 => stream.read_exact(&mut resp[..6]).await?,
+        0x01 => { stream.read_exact(&mut resp[..6]).await?; }
         0x03 => {
             let mut len = [0u8; 1];
             stream.read_exact(&mut len).await?;
             let mut addr = vec![0u8; len[0] as usize + 2];
             stream.read_exact(&mut addr).await?;
         }
-        0x04 => stream.read_exact(&mut resp[..18]).await?,
+        0x04 => { stream.read_exact(&mut resp[..18]).await?; }
         _ => anyhow::bail!("Invalid address type"),
     }
     

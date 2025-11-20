@@ -228,7 +228,7 @@ impl UpstreamConnection {
     }
 }
 
-fn parse_credential_params(username: &str, password: &str) -> HashMap<String, String> {
+fn parse_credential_params(username: &str, _password: &str) -> HashMap<String, String> {
     let mut params = HashMap::new();
     
     // Parse username for dash-separated params (e.g., user-country-us-session-abc)
